@@ -1,0 +1,152 @@
+COMANDOS BÁSICOS DE LINUX
+
+Comandos para deligar e reiniciar o Linux
+
+reboot = o linux será reiniciado no mesmo momento.
+shutdown -r now = o linux será reiniciado no mesmo momento.
+shutdown -r 3 = o linux será reiniciado em 3 minutos.
+shutdown -h now = o linux será desligado no mesmo momento.
+shutdown -h 2 = o linux será desligado em 2 minutos.
+
+Comandos para Manipulação de Diretórios
+
+LS
+ls -la = lista as permissões, data de modificação, donos, grupos, etc, e todos os arquivos
+(inclusive os ocultos).
+Ex.: ls -la /bin = listagem completa dos arquivos do diretório /bin, inclusive os ocultos.
+
+CD
+Entra em um diretório.
+cd teste = entra na pasta teste.
+cd / = retorna ao diretório raíz.
+cd - = retorna ao diretório acessado anteriormente.
+cd .. = retorna a pasta acima da presente.
+
+PWD
+pwd = mostra o caminho do diretório atual.
+
+MKDIR
+Cria um diretório.
+mkdir /tmp/teste = cria o diretório “teste” no diretório “tmp”.
+
+RMDIR
+Remove um diretório.
+rmdir /tmp/teste = remove o diretório vazio “teste”.
+OBS.: O diretório deve estar vazio para ser removido.
+
+Comandos para Manipulação de Arquivos
+
+CAT
+Mostra o conteúdo de um arquivo.
+cat nomes.txt = visualiza o conteúdo do arquivo “nomes.txt”.
+
+TAC
+Mostra o conteúdo de um arquivo, só que em ordem inversa.
+tac nomes.txt = visualiza o conteúdo do arquivo “nomes.txt”, só que em ordem inversa.
+
+RM
+Apaga arquivos. Também pode ser usado para apagar diretórios e subdiretórios vazios ou que
+contenham arquivos.
+rm -rf = remove arquivos em sub-diretórios e subdiretórios sem perguntar.
+Ex.: rm –rf /tmp/teste = remove todos os arquivos e sub-diretórios.
+CP
+Copia arquivos.
+Ex.: cp txt.txt txt1.txt = faz uma cópia do arquivo “txt.txt” para “txt1.txt”.
+
+Ex.: cp -R /home/renan/teste/* /home/renan/aula = copia todos os arquivos e sub-diretórios
+do diretório “teste” para o diretório “aula”.
+
+MV
+Move ou renomeia arquivos e diretórios.
+Ex.: mv txt.txt txt2.txt = renomeia o arquivo “txt.txt” para “txt2.txt”.
+Ex.: mv txt2.txt /home/renan/aula/t = move o arquivo “txt2.txt” para o diretório “t”.
+
+NANO
+Edita os textos dos arquivos.
+Ex.: nano senhas_fortes.odt
+Todas as combinações de teclas para Nano começam com a tecla CTRL. Para executar um
+comando você deve manter a tecla CTRL pressionada e clicar na segunda tecla para executar a
+ação. As combinações mais comuns para Nano são:
+CTRL-o – Salva o arquivo e continua trabalhando.
+CTRL-x - Sai do editor. Se você estiver no meio da edição de um arquivo, o processo de saída
+irá perguntar se você quer salvar seu trabalho.
+
+
+
+
+Instalando isc-dhcp-server
+
+#Apt-get update
+
+#Apt-get install isc-dhcp-server
+
+
+
+Configurando Dhcp-server
+
+#nano /etc/default/isc-dhcp-server
+
+#nano /etc/dhcp/dhcpd.conf
+
+
+
+Verificação do estado dhcp-server
+
+#systemctl restart isc-dhcp-server.service
+
+
+
+Instalar BIND9
+
+#Apt-get update
+#Apt-get install bind9
+
+
+
+DNS SERVER
+
+➢ Arquivos named.conf
+
+○ Zone “eteplap.com” {
+type master;
+file “db.eteplap.com”;
+}
+
+○ hint; (cache para o domínio raiz)
+master; (mestre para o domínio)
+○ slave; escravo/ redundância)
+
+
+
+nano
+
+/etc/bind/named.conf.default-zones
+
+
+
+Configurando SOA
+
+#nano /etc/bind/db.eteplap.com
+
+
+Classes de Servidores no DNS
+
+➢ IN > Servidor internos;
+➢ NS > Lista o servidor de nomes para o
+domínio;
+➢ CNAME > Nomes canônicos (aliases);
+➢ A > Mapeamente de nomes para endereços
+➢ SOA >Indica autoridade para os dados do
+domínio;
+➢ MX > Mail Exchenge (servidor de email);
+➢ PTR > Mapeamento de endereços para
+nomes;
+
+
+
+Verificação do estado bind9
+
+Reiniciando o Serviço DNS no debian 11
+
+#systemctl restart bind9.service
+
